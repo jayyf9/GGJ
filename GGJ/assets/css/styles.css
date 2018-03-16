@@ -1,37 +1,11 @@
-@font-face{font-family: AlegreyaSans;
-src:url("../fonts/AlegreyaSans-Regular.ttf");
-}
-
-@font-face{font-family: BeautyDemo;
-src:url("../fonts/BeautyDemo.ttf");
-}
-
-.navbar-brand {
-font-family: Gemcut;
-}
-
-p{font-family: AlegreyaSans;
-font-size: 28px;}
-
-h2{font-family: AlegreyaSans;
-font-size: 38px;}
-
-a{font-family: AlegreyaSans;
-font-size: 22px;}
-
-body {
-	background-color:#eef4f7;
-}
-
 #container
 {
-	max-width:1000px;
+	max-width:820px;
 	margin:0 auto;
 	padding-bottom:50px;
     width: 60%; 
     margin:0 auto; 
-	display: block; 
-	min-height: 500px;
+    display: block; 
 }
 
 #container table {margin:0 auto;}

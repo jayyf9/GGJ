@@ -25,17 +25,17 @@ $NoResults = 0;
 
 $query = "SELECT * FROM Gemstones WHERE Gem_Zodiac LIKE '%{$Zodiac}%' AND Gem_Name LIKE '%{$Search}%'"; 
 //AND Gem_Zodiac = '$Zodiac'
-$resultSet = mysqli_query($conn, $query);
+$resultSet = mysql_query($query);
     
     ?>
     <div id="Filter">
        <form action="gemstones.php">
         <table style="width: 80%; float:left;">
         <tr>
-          <td><span style="font-weight: bold; font-style: italic;">Search:</span>
-            <input style="width: 80%;" name="Search" type="text" value="<?php echo $Search; ?>">
+          <td>Search:
+            <input name="Search" type="text" value="<?php echo $Search; ?>">
             </td>
-          <td style="width: 30%;"><span style="font-weight: bold; font-style: italic;">Zodiac Sign:</span>
+          <td>Zodiac Sign:
             <select name="Zodiac">
                 <option value=""> All 
                 </option>
@@ -76,7 +76,7 @@ $resultSet = mysqli_query($conn, $query);
 <table>        
 <?php        
 $counter=2; 
-while($row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC))
+while($row = mysql_fetch_array($resultSet, MYSQL_ASSOC))
 {
 ?>
     <?php 
@@ -86,7 +86,7 @@ if ($counter % 10 == 2)
     <tr>
       <td style="text-align:center; padding:10px;">
         <a href="gemDetails.php?Item=<?php echo "{$row['Gem_Id']}"; ?>"> 
-          <img style="border-radius:5px; width:300px; height:300px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
+          <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
           <br>
             <h4 style="height:20px;"><?php {echo "{$row['Gem_Name']}";} ?></h4>
         </td>
@@ -101,7 +101,7 @@ else if ($counter % 10 == 1)
 ?> 
     <td style="text-align:center;padding:10px;">
       <a href="gemDetails.php?Item=<?php echo "{$row['Gem_Id']}"; ?>">
-        <img style="border-radius:5px; width:300px; height:300px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
+        <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
         <br>
         <h4 style="height:20px;"><?php {echo "{$row['Gem_Name']}";} ?></h4>
         </td>
@@ -114,7 +114,7 @@ else
 ?> 
   <td style="text-align:center;padding:10px;">
     <a href="gemDetails.php?Item=<?php echo "{$row['Gem_Id']}"; ?>">
-      <img style="border-radius:5px; width:300px; height:300px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
+      <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
       <br>
         <h4 style="height:20px;"><?php {echo "{$row['Gem_Name']}";} ?></h4>
       </td>
@@ -142,7 +142,7 @@ else
 
 
 <?php
-mysqli_close($conn);
+mysql_close($conn);
 ?>
   <?php include "footer.php"; ?>
 </body>

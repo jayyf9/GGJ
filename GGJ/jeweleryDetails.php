@@ -1,86 +1,87 @@
 <html>        
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaia Gemstone Jewelery</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">    
-    <?php include "header.php"; //include the header code ?>
-  </head>
-        <!-- Requests data from mysql db using the specific item ID passed in URL  -->
-        <?php   
-            $ID = $_GET['Item'];
-            $query = "SELECT * FROM Items WHERE Item_Id = $ID";     
-            $resultSet = mysqli_query($conn, $query);($query);
-            $quantity = 1;       
-        ?>
-    <body>
-        <div id="container">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Carousel-Hero.css">
+    <link rel="stylesheet" href="assets/css/Footer-Clean.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button1.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <?php include "header.php"; ?>
+</head>
+
+<?php
+$ID = $_GET['Item'];
+
+$query = "SELECT * FROM Items WHERE Item_Id = $ID";
+$resultSet = mysql_query($query);
+
+
+
+$quantity = 1;       
+?>
+<div id="container">
+<table>
+    <!-- this is how you interate a resultset from MYSQL as a associative array -->
+    <?php
+    $counter=2; 
+    
+    while($row = mysql_fetch_array($resultSet, MYSQL_ASSOC))
+    {
+$price = $value = isset($row['Item_Price']) ? $row['Item_Price'] : '';
+    ?>
+    <h2><?php {echo "{$row['Item_Name']}";} ?></h2></br>
+
+<body>
         <table>
-            <!-- this while loop iterates through the MYSQL resultset as a associative array -->
-            <?php
-                $counter=2; 
-                while($row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC))
-                {
-                    $price = $value = isset($row['Item_Price']) ? $row['Item_Price'] : '';
-            ?>
-            <h2>
-                <?php 
-                    {echo "{$row['Item_Name']}";} 
-                ?>
-            </h2>
-       
-        <tr>
-          <td>
-            <a class="fancybox" href="<?php echo 'Jewelery/' . $row['Item_Image']; ?>" title="<?php {echo "{$row['Item_Name']}";} ?>">
-              <img style="position:relative; width:450px; height:450px; border-radius: 10px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>">
-            </a>
-          </td>
+          <tr>
+            <td>
+     <a class="fancybox" href="<?php echo 'Jewelery/' . $row['Item_Image']; ?>" title="<?php {echo "{$row['Item_Name']}";} ?>"><img style="border:1px solid #021a40; position:relative; width:300px; height:300px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>"></a>
+                </td>
             <td style="padding: 15px;">
-            <?php echo "<b>Description:</b> </br>" . $row['Item_Desc']; //returns the items description ?> 
-            <br>
-            <br>
-       
-            <?php
-                if ($row['Gem_Zodiac'] == NULL) //requests the zodiac sign      
-                    {} //does nothing if it is not available
-                else
-                    {echo "<b>Zodiac Sign:</b> </br>" . $row['Gem_Zodiac'] . "</br>";}   //returns the zodiac sign of the gemstone used in this item if available
-            ?>
-            <div id="itemControl">
-                <?php
-                    $GEMID= $row['Item_GemId']; 
-                    $query2 = "SELECT * FROM Gemstones WHERE Gem_ID = $GEMID"; //selects all data for the passed gemID from the gemstones table
-                    $resultSet2 = mysqli_query($conn, $query);($query2);
+              <?php echo "<b>Description:</b> </br>" . $row['Item_Desc']; ?>
+                <br><br>
+              <?php
+        if ($row['Gem_Zodiac'] == NULL)
+        {}
+        else
+        {echo "<b>Zodiac Sign:</b> </br>" . $row['Gem_Zodiac'] . "</br>";}   
+        ?>
             
-                /* The while loop below selects the Gemstone name and stored image that is used within this item and displays/links to it. */
-                    while($row2 = mysqli_fetch_array($resultSet2, MYSQLI_ASSOC))
-                        {
-                            echo "This Item is made from " . $row2['Gem_Name'] ?> 
-                            <br/><br/>
-                            <a href="gemDetails.php?Item=<?php echo $row['Item_GemId'] ?>">
-                                <img style="border:1px solid #021a40;width:100px; height:100px; border-radius: 10px;" src="<?php echo "Gemstones/" . $row2['Gem_Image']; ?>">
-                            </a>   
-                    <?php       
-                        }  
-                    ?>     
-            <a href="GemDetails.php?Item=<?php echo $row['Item_GemId'] ?>"></a>    
-            <br/><br/>
-            <?php echo "Price: £" . "$price"; } //return the price of the item ?>
-            </div>
+    
+        <div id="itemControl">
+
+        <?php
+        $GEMID= $row['Item_GemId'];
+        $query2 = "SELECT * FROM Gemstones WHERE Gem_ID = $GEMID";
+        $resultSet2 = mysql_query($query2);
+        while($row2 = mysql_fetch_array($resultSet2, MYSQL_ASSOC))
+        {
+        echo "This Item is made from " . $row2['Gem_Name'] ?><br>
+        <a href="gemDetails.php?Item=<?php echo $row['Item_GemId'] ?>"><img style="border:1px solid #021a40;width:50px; height:50px;" src="<?php echo "Gemstones/" . $row2['Gem_Image']; ?>"></a>   
+        <br>
+        <?php  }  ?>
+        <a href="GemDetails.php?Item=<?php echo $row['Item_GemId'] ?>"></a>
+        </br>
+        <?php echo "Price: £" . "$price"; ?>
+        </div>
             </td>
         </tr>
-        </table>
-        </div>
-        <table>
+    
+    </table>
+        </br>
+    	
+</body>
 
-            <?php
-                mysqli_close($conn);  //close the mysql connection
-            ?>
-        </table>
-    </body>
-    <br>
-    <?php 
-        include "footer.php";  //include footer code to bottom of page 
+   <?php
+    }
+    mysql_close($conn);
     ?>
+  </table>
+
+</div>
+    <?php include "footer.php"; ?>
 </html>

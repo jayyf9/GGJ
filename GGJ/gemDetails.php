@@ -15,14 +15,17 @@
       <?php include "header.php"; ?>    
     </head>
     <?php
-    // standard PHP to MySQL database select script
-    $dbhost = 'localhost:3306';
-    $dbuser = 'root';
-    $dbpass = '';
-    $conn = mysqli_connect($dbhost, $dbuser, $dbpass) or die         ('Error connecting to mysql');
-
-    $dbname = 'GGJewellery'; // this is the schema name in MySQL Workbench or DB name in PHPmyadmin
-    mysqli_select_db($dbname);
+// standard PHP to MySQL database select script
+$dbhost = '160.153.146.154';
+$dbuser = 'GGJewellery';
+$dbpass = 'Phenom955!';
+$conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
+$dbname = 'GGJewellery'; // this is the schema name in MySQL Workbench or DB name in PHPmyadmin
+mysql_select_db($dbname);
+$ID = $_GET['Item'];
+$query = "SELECT Gem_Id, Gem_Image, Gem_Name, Gem_Desc, Gem_Zodiac, Gem_ZodiacImg FROM Gemstones WHERE Gem_Id = $ID";
+$resultSet = mysql_query($query);
+$quantity = 1;       
 ?>
     <body>
       <div id="container">
@@ -30,7 +33,7 @@
           <!-- this is how you interate a resultset from MYSQL as a associative array -->
           <?php
 $counter=2; 
-while($row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC))
+while($row = mysql_fetch_array($resultSet, MYSQL_ASSOC))
 {
 ?>
           <h2>Gemstone: 
@@ -41,7 +44,7 @@ while($row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC))
           <tr>
             <td>
               <a href="<?php echo "Gemstones/" . $row['Gem_Image']; ?>" title="<?php {echo "{$row['Gem_Name']}";} ?>">
-                <img style="position:relative; width:450px; height:450px; border-radius: 10px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
+                <img style="border: 1px solid #021a40; position:relative; width:300px; height:300px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
               </a>
             </td>
             <td style="padding: 15px;">
@@ -51,7 +54,7 @@ while($row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC))
         if ($row['Gem_Zodiac'] == NULL)
         {}
         else
-        {echo "<b>Zodiac Sign:</b> </br> <img style='width:80px;' src=" . '"' . "Gemstones/" . $row['Gem_ZodiacImg'] . '"' . "></br>";}   
+        {echo "<b>Zodiac Sign:</b> </br> <img style='width:60px;' src=" . '"' . "Gemstones/" . $row['Gem_ZodiacImg'] . '"' . "></br>";}   
         ?>
             </td>
           </tr>
@@ -59,7 +62,7 @@ while($row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC))
         </body>
       <?php
 }
-mysqli_close($conn);
+mysql_close($conn);
 ?>
       </table>
     </div>

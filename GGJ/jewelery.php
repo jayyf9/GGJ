@@ -12,16 +12,15 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <?php include "header.php"; ?>    
 </head>    
-<?php
-    // standard PHP to MySQL database select script
-    $dbhost = 'localhost:3306';
-    $dbuser = 'root';
-    $dbpass = '';
-    $conn = mysqli_connect($dbhost, $dbuser, $dbpass) or die         ('Error connecting to mysql');
-
-    $dbname = 'GGJewellery'; // this is the schema name in MySQL Workbench or DB name in PHPmyadmin
-    mysqli_select_db($conn, $dbname);
-?>
+  <?php
+// standard PHP to MySQL database select script
+$dbhost = '160.153.146.154';
+$dbuser = 'GGJewellery';
+$dbpass = 'Phenom955!';
+$conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
+$dbname = 'GGJewellery'; // this is the schema name in MySQL Workbench or DB name in PHPmyadmin
+mysql_select_db($dbname);
+    ?>
 
 <body>
 
@@ -35,13 +34,13 @@ $NoResults = 0;
 
 
 $query = "SELECT * FROM Items WHERE Item_Name LIKE '%{$Search}%'"; //ORDER BY Item_Price '%{$SortBy}%'
-$resultSet = mysqli_query($conn, $query);($query);   ?>     
+$resultSet = mysql_query($query);   ?>     
     <div id="Filter">
        <form action="jewelery.php">
         <table style="width: 50%; float:left;">
         <tr>
-          <td><span style="font-weight: bold; font-style: italic;">Search:</span>
-            <input style="width:80%;" name="Search" type="text" value="<?php echo $Search; ?>">
+          <td>Search:
+            <input name="Search" type="text" value="<?php echo $Search; ?>">
             </td>
            <td>
             <button type="submit">Update
@@ -54,7 +53,7 @@ $resultSet = mysqli_query($conn, $query);($query);   ?>
     <!-- this is how you interate a resultset from MYSQL as a associative array -->
     <?php
 $counter=2; 
-while($row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC))
+while($row = mysql_fetch_array($resultSet, MYSQL_ASSOC))
 {
 $endofarray = $row2['Item_Id'];
 ?>
@@ -65,7 +64,7 @@ if ($counter % 10 == 2)
     <tr>
       <td style="text-align:center; padding:10px;">
         <a href="jeweleryDetails.php?Item=<?php echo "{$row['Item_Id']}"; ?>" > 
-          <img style="border-radius:5px; width:300px; height:300px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>">
+          <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>">
           <br>
             <h4 style="height:20px;"><?php {echo "{$row['Item_Name']}";} ?></h4>
         </a> 
@@ -79,7 +78,7 @@ else if ($counter % 10 == 1)
 ?> 
     <td style="text-align:center;padding:10px;">
       <a href="jeweleryDetails.php?Item=<?php echo "{$row['Item_Id']}"; ?>">
-        <img style="border-radius:5px; width:300px; height:300px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>">
+        <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>">
         <br>
           <h4 style="height:20px;"><?php {echo $row['Item_Name'];} ?></h4>
         </td>
@@ -92,7 +91,7 @@ else
 ?> 
   <td style="text-align:center;padding:10px;">
     <a href="jeweleryDetails.php?Item=<?php echo "{$row['Item_Id']}"; ?>">
-      <img style="border-radius:5px; width:300px; height:300px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>">
+      <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>">
       <br>
         <h4 style="height:20px;"><?php {echo "{$row['Item_Name']}";} ?></h4>
     </a> 
@@ -119,7 +118,7 @@ else
 
 
 <?php
-mysqli_close($conn);
+mysql_close($conn);
 ?>
 
   <?php include "footer.php"; ?>

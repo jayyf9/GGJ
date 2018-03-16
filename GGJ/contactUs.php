@@ -16,7 +16,7 @@
 
 <body>
   <div id="container">
-    <div class="row" id="contact" style="margin-top:50px;">
+    <div class="row" id="contact" style="margin:auto;margin-top:50px;">
         <div class="col-lg-push-1 col-md-6">
             <form>
                 <div class="form-group">

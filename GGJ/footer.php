@@ -34,7 +34,8 @@
                             <li><a href="about.php">Legacy</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 item social"><a href="http://www.facebook.com"><img src="assets/img/facebook.svg" /></a><a href="http://www.twitter.com"><img src="assets/img/twitter.svg" /></a><a href="http://www.instagram.com"><img src="assets/img/instagram.svg"/></a>                        <p class="copyright">Gaia Gemstone Jewellery © 2016</p>
+                    <div class="col-md-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                        <p class="copyright">Gaia Gemstone Jewellery © 2016</p>
                     </div>
                 </div>
             </div>

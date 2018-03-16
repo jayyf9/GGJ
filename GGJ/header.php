@@ -12,26 +12,24 @@
     <link rel="stylesheet" href="assets/css/styles.css"> 
 </head>
 
-<?php
-    // standard PHP to MySQL database select script
-    $dbhost = 'localhost:3306';
-    $dbuser = 'root';
-    $dbpass = '';
-    $conn = mysqli_connect($dbhost, $dbuser, $dbpass) or die         ('Error connecting to mysql');
-
-    $dbname = 'GGJewellery'; // this is the schema name in MySQL Workbench or DB name in PHPmyadmin
-    mysqli_select_db($conn, $dbname);
-?> 
+    <?php
+// standard PHP to MySQL database select script
+$dbhost = '160.153.146.154';
+$dbuser = 'GGJewellery';
+$dbpass = 'Phenom955!';
+$conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
+$dbname = 'GGJewellery'; // this is the schema name in MySQL Workbench or DB name in PHPmyadmin
+mysql_select_db($dbname); ?>    
 
 <body>
     <div>
         <nav class="navbar navbar-default navigation-clean-button">
             <div class="container">
-                <div class="navbar-header" style="margin-top: -10px;">
-                    <a class="navbar-brand navbar-link" style="font-size:28px;" href="index.php" data-aos="fade-right"><img src="assets/img/logo.png" style="position:relative; width: 40px; height:40px;">Gaia Gemstone Jewellery</a>
+                <div class="navbar-header">
+                    <a class="navbar-brand navbar-link" href="index.php" data-aos="fade-right"><img src="assets/img/logo.png" width="30px" height="30px" style="position:relative;">Gaia Gemstone Jewellery</a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 </div>
-                <div class="collapse navbar-collapse" id="navcol-1" style="margin-left:45%;">
+                <div class="collapse navbar-collapse" id="navcol-1" style="margin-left:300px;">
                     <ul class="nav navbar-nav">
                         <li role="presentation"><a href="index.php"><i class="glyphicon glyphicon-home"></i> Home </a></li>
                         <li role="presentation"><a href="jewelery.php"><i class="glyphicon glyphicon-gift"></i> Jewelery </a></li>
