@@ -67,7 +67,6 @@ $resultSet = mysqli_query($conn, $query);   ?>
 $counter=2; 
 while($row = mysqli_fetch_array($resultSet))
 {
-$endofarray = $row2['Item_Id'];
 ?>
     <?php 
 if ($counter % 10 == 2)
@@ -75,10 +74,10 @@ if ($counter % 10 == 2)
 ?> 
     <tr>
       <td style="text-align:center; padding:10px;">
-        <a href="jeweleryDetails.php?Item=<?php echo "{$row['Item_Id']}"; ?>" > 
-          <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>">
+        <a href="jeweleryDetails.php?Item=<?php echo "{$row['Item_ID']}"; ?>" > 
+          <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Jewelery/" . $row['Item_IMAGE'];} ?>">
           <br>
-            <h4 style="height:20px;"><?php {echo "{$row['Item_Name']}";} ?></h4>
+            <h4 style="height:20px;"><?php {echo $row['Item_NAME'];} ?></h4>
         </a> 
       </td>
     <?php
@@ -89,10 +88,10 @@ else if ($counter % 10 == 1)
 {
 ?> 
     <td style="text-align:center;padding:10px;">
-      <a href="jeweleryDetails.php?Item=<?php echo "{$row['Item_Id']}"; ?>">
-        <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>">
+      <a href="jeweleryDetails.php?Item=<?php echo "{$row['Item_ID']}"; ?>">
+        <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Jewelery/" . $row['Item_IMAGE'];} ?>">
         <br>
-          <h4 style="height:20px;"><?php {echo $row['Item_Name'];} ?></h4>
+          <h4 style="height:20px;"><?php {echo $row['Item_NAME'];} ?></h4>
         </td>
     </a> 
   <?php
@@ -102,10 +101,10 @@ else
 {
 ?> 
   <td style="text-align:center;padding:10px;">
-    <a href="jeweleryDetails.php?Item=<?php echo "{$row['Item_Id']}"; ?>">
-      <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Jewelery/" . $row['Item_Image'];} ?>">
+    <a href="jeweleryDetails.php?Item=<?php echo "{$row['Item_ID']}"; ?>">
+      <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Jewelery/" . $row['Item_IMAGE'];} ?>">
       <br>
-        <h4 style="height:20px;"><?php {echo "{$row['Item_Name']}";} ?></h4>
+        <h4 style="height:20px;"><?php {echo "{$row['Item_NAME']}";} ?></h4>
     </a> 
   </td>
 <?php

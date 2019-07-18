@@ -71,7 +71,7 @@ mysqli_select_db($conn, $dbname);
                 <div class="box">
                     <p class="description">I have been coming here for a few weeks buying various bits and pieces, this website is the perfect place to complete your outfits with the vivid colors in your jewlery to match your favourite outfits.</p>
                 </div>
-                <div class="author"><img class="img-circle" src="/GGJ/assets/img/1.jpg" />
+                <div class="author"><img class="img-circle" src="/assets/img/1.jpg" />
                     <h5 class="name">Gloria Johnson</h5>
                 </div>
             </div>
@@ -79,7 +79,7 @@ mysqli_select_db($conn, $dbname);
                 <div class="box">
                     <p class="description">I stumbled upon this site looking for a present for my grandaughter, and queried about getting a bespoke necklace made, the final piece was outstanding! My grandaughter is very pleased and I will be sure to reccomend them to others. </p>
                 </div>
-                <div class="author"><img class="img-circle" src="/GGJ/assets/img/3.jpg" />
+                <div class="author"><img class="img-circle" src="/assets/img/3.jpg" />
                     <h5 class="name">Carl Kent</h5>
                 </div>
             </div>
@@ -87,7 +87,7 @@ mysqli_select_db($conn, $dbname);
                 <div class="box">
                     <p class="description">Bought myself a pair of gourgous earings here and so glad I did, the gemstones and build quality is immediately apparent and even the uniqueness that comes with handmade jewelery makes them that much more special.</p>
                 </div>
-                <div class="author"><img class="img-circle" src="/GGJ/assets/img/2.jpg" />
+                <div class="author"><img class="img-circle" src="/assets/img/2.jpg" />
                     <h5 class="name">Emily Clark</h5>
                 </div>
             </div>

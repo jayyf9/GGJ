@@ -17,15 +17,15 @@
 
 <div id="container">
 <?php
-$page = $_GET['page'];
-$items = $_GET['items'];
-$Zodiac = $_GET['Zodiac'];
-$Search = $_GET['Search'];
+$page = isset($_GET['page']);
+$items = isset($_GET['items']);
+$Zodiac = isset($_GET['Zodiac']);
+$Search = isset($_GET['Search']);
 $NoResults = 0;
 
 $query = "SELECT * FROM Gemstones WHERE Gem_Zodiac LIKE '%{$Zodiac}%' AND Gem_Name LIKE '%{$Search}%'"; 
 //AND Gem_Zodiac = '$Zodiac'
-$resultSet = mysqli_query($query);
+$resultSet = mysqli_query($conn, $query);
     
     ?>
     <div id="Filter">
@@ -76,7 +76,7 @@ $resultSet = mysqli_query($query);
 <table>        
 <?php        
 $counter=2; 
-while($row = mysqli_fetch_array($resultSet, mysqli_ASSOC))
+while($row = mysqli_fetch_array($resultSet))
 {
 ?>
     <?php 
@@ -85,7 +85,7 @@ if ($counter % 10 == 2)
 ?> 
     <tr>
       <td style="text-align:center; padding:10px;">
-        <a href="gemDetails.php?Item=<?php echo "{$row['Gem_Id']}"; ?>"> 
+        <a href="gemDetails.php?Item=<?php echo "{$row['Gem_ID']}"; ?>"> 
           <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
           <br>
             <h4 style="height:20px;"><?php {echo "{$row['Gem_Name']}";} ?></h4>
@@ -100,7 +100,7 @@ else if ($counter % 10 == 1)
 {
 ?> 
     <td style="text-align:center;padding:10px;">
-      <a href="gemDetails.php?Item=<?php echo "{$row['Gem_Id']}"; ?>">
+      <a href="gemDetails.php?Item=<?php echo "{$row['Gem_ID']}"; ?>">
         <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
         <br>
         <h4 style="height:20px;"><?php {echo "{$row['Gem_Name']}";} ?></h4>
@@ -113,7 +113,7 @@ else
 {
 ?> 
   <td style="text-align:center;padding:10px;">
-    <a href="gemDetails.php?Item=<?php echo "{$row['Gem_Id']}"; ?>">
+    <a href="gemDetails.php?Item=<?php echo "{$row['Gem_ID']}"; ?>">
       <img style="border:1px solid #021a40; width:250px; height:250px;" src="<?php {echo "Gemstones/" . $row['Gem_Image'];} ?>">
       <br>
         <h4 style="height:20px;"><?php {echo "{$row['Gem_Name']}";} ?></h4>

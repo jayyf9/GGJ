@@ -15,7 +15,6 @@
       <?php include "header.php"; ?>    
     </head>
     <?php
-  <?php
   // standard PHP to MySQL database select script
   $dbhost = 'localhost';
   $dbuser = 'root';
@@ -24,8 +23,8 @@
   $dbname = 'ggjewellery'; // this is the schema name in MySQL Workbench or DB name in PHPmyadmin
   mysqli_select_db($conn, $dbname);
 $ID = $_GET['Item'];
-$query = "SELECT Gem_Id, Gem_Image, Gem_Name, Gem_Desc, Gem_Zodiac, Gem_ZodiacImg FROM Gemstones WHERE Gem_Id = $ID";
-$resultSet = mysqli_query($query);
+$query = "SELECT * FROM Gemstones WHERE Gem_Id = $ID";
+$resultSet = mysqli_query($conn, $query);
 $quantity = 1;       
 ?>
     <body>
@@ -34,7 +33,7 @@ $quantity = 1;
           <!-- this is how you interate a resultset from MYSQL as a associative array -->
           <?php
 $counter=2; 
-while($row = mysqli_fetch_array($resultSet, mysqli_ASSOC))
+while($row = mysqli_fetch_array($resultSet))
 {
 ?>
           <h2>Gemstone: 
@@ -55,7 +54,7 @@ while($row = mysqli_fetch_array($resultSet, mysqli_ASSOC))
         if ($row['Gem_Zodiac'] == NULL)
         {}
         else
-        {echo "<b>Zodiac Sign:</b> </br> <img style='width:60px;' src=" . '"' . "Gemstones/" . $row['Gem_ZodiacImg'] . '"' . "></br>";}   
+        {echo "<b>Zodiac Sign:</b> </br> <img style='width:60px;' src=" . '"' . "Gemstones/" . $row['Gem_Zodiac'] . '"' . "></br>";}   
         ?>
             </td>
           </tr>
